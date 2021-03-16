@@ -32,14 +32,14 @@ void Controller::sendCommand(QByteArray body)
 	QByteArray command;
 	// Command type
 	command.append("\x01\x00", 2);
-	// Body length in bytes
+	// Body length (one byte at a time)
 	command.append((bodyLength >> 8) & 0xFF);
-	command.append(bodyLength & 0xFF);
-	// Sequence number in bytes
+	command.append(bodyLength);
+	// Sequence number (one byte at a time)
 	command.append((seqNum >> 24) & 0xFF);
 	command.append((seqNum >> 16) & 0xFF);
 	command.append((seqNum >> 8) & 0xFF);
-	command.append(seqNum & 0xFF);
+	command.append(seqNum);
 	command.append(body);
 
 	m_socket->writeDatagram(command, m_ip, m_port);
@@ -65,8 +65,8 @@ void Controller::moveStop()
 void Controller::moveUp(unsigned short speed)
 {
 	QByteArray command("\x81\x01\x06\x01");
-	command.append(speed & 0xFF);
-	command.append(speed & 0xFF);
+	command.append(speed);
+	command.append(speed);
 	command.append("\x03\x01\xFF");
 	sendCommand(command);
 }
@@ -74,8 +74,8 @@ void Controller::moveUp(unsigned short speed)
 void Controller::moveUpRight(unsigned short speed)
 {
 	QByteArray command("\x81\x01\x06\x01");
-	command.append(speed & 0xFF);
-	command.append(speed & 0xFF);
+	command.append(speed);
+	command.append(speed);
 	command.append("\x02\x01\xFF");
 	sendCommand(command);
 }
@@ -83,8 +83,8 @@ void Controller::moveUpRight(unsigned short speed)
 void Controller::moveRight(unsigned short speed)
 {
 	QByteArray command("\x81\x01\x06\x01");
-	command.append(speed & 0xFF);
-	command.append(speed & 0xFF);
+	command.append(speed);
+	command.append(speed);
 	command.append("\x02\x03\xFF");
 	sendCommand(command);
 }
@@ -92,8 +92,8 @@ void Controller::moveRight(unsigned short speed)
 void Controller::moveDownRight(unsigned short speed)
 {
 	QByteArray command("\x81\x01\x06\x01");
-	command.append(speed & 0xFF);
-	command.append(speed & 0xFF);
+	command.append(speed);
+	command.append(speed);
 	command.append("\x02\x02\xFF");
 	sendCommand(command);
 }
@@ -101,8 +101,8 @@ void Controller::moveDownRight(unsigned short speed)
 void Controller::moveDown(unsigned short speed)
 {
 	QByteArray command("\x81\x01\x06\x01");
-	command.append(speed & 0xFF);
-	command.append(speed & 0xFF);
+	command.append(speed);
+	command.append(speed);
 	command.append("\x03\x02\xFF");
 	sendCommand(command);
 }
@@ -110,8 +110,8 @@ void Controller::moveDown(unsigned short speed)
 void Controller::moveDownLeft(unsigned short speed)
 {
 	QByteArray command("\x81\x01\x06\x01");
-	command.append(speed & 0xFF);
-	command.append(speed & 0xFF);
+	command.append(speed);
+	command.append(speed);
 	command.append("\x01\x02\xFF");
 	sendCommand(command);
 }
@@ -119,8 +119,8 @@ void Controller::moveDownLeft(unsigned short speed)
 void Controller::moveLeft(unsigned short speed)
 {
 	QByteArray command("\x81\x01\x06\x01");
-	command.append(speed & 0xFF);
-	command.append(speed & 0xFF);
+	command.append(speed);
+	command.append(speed);
 	command.append("\x01\x03\xFF");
 	sendCommand(command);
 }
@@ -128,8 +128,8 @@ void Controller::moveLeft(unsigned short speed)
 void Controller::moveUpLeft(unsigned short speed)
 {
 	QByteArray command("\x81\x01\x06\x01");
-	command.append(speed & 0xFF);
-	command.append(speed & 0xFF);
+	command.append(speed);
+	command.append(speed);
 	command.append("\x01\x01\xFF");
 	sendCommand(command);
 }
@@ -143,7 +143,7 @@ void Controller::zoomIn(unsigned short speed)
 {
 	QByteArray command("\x81\x01\x04\x07");
 	speed += 32; // Zoom in speed is formatted in hex as "2[speed]"
-	command.append(speed & 0xFF);
+	command.append(speed);
 	command.append("\xFF");
 	sendCommand(command);
 }
@@ -152,7 +152,7 @@ void Controller::zoomOut(unsigned short speed)
 {
 	QByteArray command("\x81\x01\x04\x07");
 	speed += 48; // Zoom out speed is formatted in hex as "3[speed]"
-	command.append(speed & 0xFF);
+	command.append(speed);
 	command.append("\xFF");
 	sendCommand(command);
 }
@@ -160,7 +160,7 @@ void Controller::zoomOut(unsigned short speed)
 void Controller::presetSet(unsigned short preset)
 {
 	QByteArray command("\x81\x01\x04\x3F\x01");
-	command.append(preset & 0xFF);
+	command.append(preset);
 	command.append("\xFF");
 	sendCommand(command);
 }
@@ -168,7 +168,7 @@ void Controller::presetSet(unsigned short preset)
 void Controller::presetRecall(unsigned short preset)
 {
 	QByteArray command("\x81\x01\x04\x3F\x02");
-	command.append(preset & 0xFF);
+	command.append(preset);
 	command.append("\xFF");
 	sendCommand(command);
 }
