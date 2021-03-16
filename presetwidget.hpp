@@ -8,60 +8,59 @@
 
 #define DEBUG_PRESETS false
 
-class PresetButton : public QPushButton
-{
-    Q_OBJECT
+class PresetButton : public QPushButton {
+	Q_OBJECT
 public:
-    PresetButton(int presetNum, QString name, QWidget *parent = nullptr)
-        : QPushButton(name, parent)
-    {
-        m_preset = presetNum;
-        connect(this, SIGNAL(clicked()), this, SLOT(emitClickedPreset()));
-    };
+	PresetButton(int presetNum, QString name, QWidget *parent = nullptr)
+		: QPushButton(name, parent)
+	{
+		m_preset = presetNum;
+		connect(this, SIGNAL(clicked()), this,
+			SLOT(emitClickedPreset()));
+	};
 
 public slots:
-    void emitClickedPreset(){ emit clickedPreset(m_preset); };
+	void emitClickedPreset() { emit clickedPreset(m_preset); };
 
 signals:
-    void clickedPreset(int preset);
+	void clickedPreset(int preset);
 
 private:
-    int m_preset;
+	int m_preset;
 };
 
-class PresetWidget: public QWidget
-{
-    Q_OBJECT
+class PresetWidget : public QWidget {
+	Q_OBJECT
 public:
-    PresetWidget(QWidget *parent = nullptr);
+	PresetWidget(QWidget *parent = nullptr);
 
 public slots:
-    void emitPreset(int preset);
-    void setRows(int rows)
-    {
-        clearLayout();
-        m_rows = rows;
-        setupLayout();
-    };
-    void setColumns(int columns)
-    {
-        clearLayout();
-        m_columns = columns;
-        setupLayout();
-    };
+	void emitPreset(int preset);
+	void setRows(int rows)
+	{
+		clearLayout();
+		m_rows = rows;
+		setupLayout();
+	};
+	void setColumns(int columns)
+	{
+		clearLayout();
+		m_columns = columns;
+		setupLayout();
+	};
 
 signals:
-    void presetSet(unsigned short preset);
-    void presetRecalled(unsigned short preset);
+	void presetSet(unsigned short preset);
+	void presetRecalled(unsigned short preset);
 
 private:
-    QGridLayout *m_gridLayout;
-    QPushButton *m_storePosBtn;
-    int m_rows;
-    int m_columns;
+	QGridLayout *m_gridLayout;
+	QPushButton *m_storePosBtn;
+	int m_rows;
+	int m_columns;
 
-    void setupLayout();
-    void clearLayout();
+	void setupLayout();
+	void clearLayout();
 };
 
 #endif // PRESETWIDGET_H

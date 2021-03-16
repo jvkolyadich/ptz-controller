@@ -7,12 +7,11 @@
 #include "controller.hpp"
 #include "presetwidget.hpp"
 
-class PTZControllerDock : public QDockWidget
-{
-    Q_OBJECT
+class PTZControllerDock : public QDockWidget {
+	Q_OBJECT
 public:
-    PTZControllerDock(QWidget *parent = nullptr);
-    ~PTZControllerDock();
+	PTZControllerDock(QWidget *parent = nullptr);
+	~PTZControllerDock();
 
 private:
 	SettingsDialog *m_settingsDialog;
