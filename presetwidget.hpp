@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QGridLayout>
-#include <QDebug>
 
+#include <QDebug>
 #define DEBUG_PRESETS false
 
 class PresetButton : public QPushButton {

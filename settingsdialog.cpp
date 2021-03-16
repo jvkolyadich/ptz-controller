@@ -1,6 +1,6 @@
 #include "settingsdialog.hpp"
+
 #include "obs.h"
-#include "obs-module.h"
 #include "util/config-file.h"
 #include "util/platform.h"
 #include "locale.h"

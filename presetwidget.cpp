@@ -1,6 +1,5 @@
 #include "presetwidget.hpp"
 
-#include "obs-module.h"
 #include "locale.h"
 
 PresetWidget::PresetWidget(QWidget *parent) : QWidget(parent)

@@ -3,7 +3,6 @@
 #include <QMainWindow>
 
 #include "obs-frontend-api.h"
-#include "obs-module.h"
 #include "locale.h"
 
 MODULE_EXPORT void load_ptz_controller_dock()

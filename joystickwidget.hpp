@@ -4,9 +4,9 @@
 #include <QWidget>
 #include <QPainter>
 #include <QMouseEvent>
-#include <QDebug>
 #include <cmath>
 
+#include <QDebug>
 #define DEBUG_MOVE false
 #define DEBUG_ZOOM false
 
