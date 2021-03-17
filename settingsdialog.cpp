@@ -69,7 +69,7 @@ SettingsDialog::SettingsDialog(QWidget *parent, Qt::WindowFlags f)
 	QLabel *zoomAdjLbl =
 		new QLabel(LOCALE("ZoomAdjustment") + ": ", joystickGroup);
 	m_zoomAdjSlider = new QSlider(Qt::Horizontal, joystickGroup);
-	m_zoomAdjSlider->setRange(100, 400);
+	m_zoomAdjSlider->setRange(100, 200);
 	connect(m_zoomAdjSlider, SIGNAL(valueChanged(int)), this,
 		SLOT(onZoomAdjChanged(int)));
 

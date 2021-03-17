@@ -45,19 +45,19 @@ QRectF JoystickWidget::centerCircleBounds()
 float JoystickWidget::calcMoveSpeedStepAt(int index)
 {
 	float xVal = (float)index / m_maxMoveSpeed;
-	float multiplier =
-		((m_moveAdjustmentWeight * (std::pow(xVal, m_moveAdjustment))) +
-		 ((1 - m_moveAdjustmentWeight) * xVal));
+	float multiplier = ((m_moveAdjustmentWeight *
+			     (std::powf(xVal, m_moveAdjustment))) +
+			    ((1 - m_moveAdjustmentWeight) * xVal));
 	return (m_maxDistFromCenter - ((multiplier * m_maxMoveSpeed) *
 				       (m_maxDistFromCenter / m_maxMoveSpeed)));
 }
 
 float JoystickWidget::calcZoomSpeedStepAt(int index)
 {
-	float xVal = (float)index / m_maxZoomSpeed;
-	float multiplier =
-		((m_zoomAdjustmentWeight * (std::pow(xVal, m_zoomAdjustment))) +
-		 ((1 - m_zoomAdjustmentWeight) * xVal));
+	float xVal = (float)(m_maxZoomSpeed - index) / m_maxZoomSpeed;
+	float multiplier = 1 - (((m_zoomAdjustmentWeight *
+				  (std::powf(xVal, m_zoomAdjustment))) +
+				 ((1 - m_zoomAdjustmentWeight) * xVal)));
 	return ((m_maxZoomSpeed * m_degPerZoom) -
 		((multiplier * m_maxZoomSpeed) * m_degPerZoom));
 }
